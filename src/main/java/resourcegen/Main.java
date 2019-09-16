@@ -297,6 +297,15 @@ public class Main {
                 conversions.get(j4).add(new BedrockItem(b4.getName(), b4.getId(), dyeColor.ordinal()));
             }
 
+            // Custom remaps
+            JavaItem j = java.get("minecraft:grass_block");
+            conversions.computeIfAbsent(j, (x) -> new ArrayList<>());
+            conversions.get(j).add(BEDROCK_BLOCKS.get("minecraft:grass"));
+
+            JavaItem j2 = java.get("minecraft:grass");
+            conversions.computeIfAbsent(j2, (x) -> new ArrayList<>());
+            conversions.get(j2).add(BEDROCK_BLOCKS.get("minecraft:tallgrass"));
+
             for(Map.Entry<JavaItem, List<BedrockItem>> entry : conversions.entrySet()) {
                 for (BedrockItem item : entry.getValue()) {
                     jsonWriter.beginObject();
